@@ -8,7 +8,9 @@ Done Stuff.md is expected to be formatted as follows:
 
 - <TOGGL_ENTRY>
     - <COMMENT>
-        - <COMMENT>    
+        - <COMMENT>
+        <...>
+    <...>
 <...>
 - <TOGGL_ENTRY>
 <...>
@@ -17,9 +19,13 @@ Done Stuff.md is expected to be formatted as follows:
 ------------------------------------
 
 Toggle entries can be on a second level of identation, e.g. groupped by category like "Work" or project like "CoLifer":
-- Work
+- <CATEGORY>
     - <TOGGL_ENTRY>
-    - <TOGGL_ENTRY>    
+        - <COMMENT>
+            - <COMMENT>
+            <...>
+        <...>
+    <...>
 """
 import argparse
 import logging
