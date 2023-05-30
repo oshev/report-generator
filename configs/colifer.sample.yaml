@@ -14,7 +14,7 @@ Toggl:
   projects_endpoint: "https://api.track.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/projects" # call https://www.toggl.com/api/v8/workspaces
   clients_endpoint: "https://api.track.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/clients"
   tag_order_filename: configs/tag_order_toggl.txt
-  past_tense_rules_file: configs/past_tense_rules.txt
+  past_tense_rules_file: null # configs/past_tense_rules.txt
 
 Zotero:
   enabled: False

@@ -1,10 +1,10 @@
 """Module to gather basic Pocket stats."""
 
-from colifer.config import Config
 import logging
-from colifer.reportextenders.articles.pocket_parser import PocketParser
 
-LOGGING_FORMAT = '[%(levelname)s] %(asctime)s %(name)s:%(lineno)d - %(message)s'
+from colifer.config import Config
+from colifer.constants import LOGGING_FORMAT
+from colifer.reportextenders.articles.pocket_parser import PocketParser
 
 logging.basicConfig(level="INFO", format=LOGGING_FORMAT)
 logger = logging.getLogger(__name__)

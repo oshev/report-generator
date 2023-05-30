@@ -10,6 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 Also, please add the MR link to each item in this Changelog.
 
+## [0.0.3]
+from [os] - 2023-04-28
+### Added
+- Done Aggregation script to incorporate "Done Stuff.md" into the weekly report.
+### Changed
+- Made Past tense rules file optional. If it's not defined, then verbs are not converted to past tense.
+    - This is made to simplify Done aggregation. Otherwise, it's harder to match entry names between done and report.
+
 ## [0.0.2]
 from [os] - 2023-04-19
 ### Added

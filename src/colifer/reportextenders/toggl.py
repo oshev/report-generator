@@ -31,10 +31,13 @@ class TogglEntriesParser(ReportExtender):
             self.projects_endpoint = Config.get_section_param(section_entries, "projects_endpoint")
             self.clients_endpoint = Config.get_section_param(section_entries, "clients_endpoint")
             self.tag_order = TagOrder(
-                Config.get_section_param(section_entries, "tag_order_filename"))
-            self.past_tense_rules_obj = tense_rules.TenseRules()
-            self.past_tense_rules_obj.read_tense_rules(
-                Config.get_section_param(section_entries, "past_tense_rules_file"))
+                Config.get_section_param(section_entries, "tag_order_filename"))            
+            past_tense_rules_file = Config.get_section_param(section_entries, "past_tense_rules_file")
+            if past_tense_rules_file:
+                self.past_tense_rules_obj = tense_rules.TenseRules()
+                self.past_tense_rules_obj.read_tense_rules(past_tense_rules_file)
+            else:
+                self.past_tense_rules_obj = None
         else:
             self.api_token = None
 
@@ -110,7 +113,10 @@ class TogglEntriesParser(ReportExtender):
     def get_report_path(self, section_stat):
         client_name, project_name, leaf_name = section_stat.path.split(SECTION_STAT_PATH_SEPARATOR)
         init_path = [project_name, client_name]
-        leaf_name_past_tense = self.past_tense_rules_obj.convert_tense(leaf_name)
+        if self.past_tense_rules_obj:
+            leaf_name_processed = self.past_tense_rules_obj.convert_tense(leaf_name)
+        else:
+            leaf_name_processed = leaf_name
         tags_with_order = []
         for tag in section_stat.common_tags:
             order = self.tag_order.get_order(tag)
@@ -120,7 +126,7 @@ class TogglEntriesParser(ReportExtender):
                                    for tag_and_order in
                                    sorted(tags_with_order, key=lambda x: (x[1], x[0]))]
         init_path.extend(ordered_meaningful_tags)
-        return init_path, leaf_name_past_tense
+        return init_path, leaf_name_processed
 
     def extend_report(self, report, report_parameters):
         if not self.api_token:
