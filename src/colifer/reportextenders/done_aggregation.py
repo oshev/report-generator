@@ -85,9 +85,12 @@ def _aggregate_report(report_lines: List[str], week_done_actions_dict: Dict[str,
                     for note in action.notes:
                         ext_weekly_report += f"{base_identation}{note}\n"
                     del week_done_actions_dict_copy[action.name]
+    # TODO: check why some comments are not added to the report
+    # e.g. those for "Play "Zero Caliber" with Leha on Oculus Quest 2"
     # TODO: extract project from lines like "### Avoidable Side Work"
     # TODO: map projects to 3 categories "Work", "Family & Friends", and "Other" in Overview
     # TODO: add keywords for each category (e.g. Michelle, Dylan, Paola, Leha)
+    # TODO: Include Work stuff to Overview
     # TODO: how to map non-tracked actions? put them to "Other"?
     action_tuples = [((f"- {action.weekday_nums} " if action.weekday_nums else "") + f"- {action.name} ", action)
                       for action in week_done_actions_dict.values()]
